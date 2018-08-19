@@ -121,3 +121,18 @@ li {
 .lt-modal .modal-body {
   color: #A94442;
 }
+.lt-main table.table.table-bordered.table-hover {
+  text-align: center;
+  vertical-align: middle;
+}
+.lt-main table.table.table-bordered.table-hover thead {
+  text-align: center;
+}
+.lt-main table.table.table-bordered.table-hover thead tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+.lt-main table.table.table-bordered.table-hover tbody tr td {
+  text-align: center;
+  vertical-align: middle;
+}
