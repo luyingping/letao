@@ -23,6 +23,12 @@ li {
 .red {
   color: #A94442;
 }
+.pl-15 {
+  padding-left: 15px;
+}
+.pr-15 {
+  padding-right: 15px;
+}
 .panel .panel-heading {
   font-size: 20px;
   height: 60px;
