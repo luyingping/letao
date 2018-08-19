@@ -110,6 +110,11 @@ li {
 .lt-main .breadcrumb {
   margin-top: 20px;
 }
+.lt-main .echarts-l,
+.lt-main .echarts-r {
+  width: 50%;
+  height: 400px;
+}
 .lt-main.current {
   padding-left: 0px;
 }
