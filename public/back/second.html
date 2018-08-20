@@ -112,13 +112,14 @@
               <form  id="addSecond">
                 <div class="modal-body">
                   <div class="dropdown form-group">
-                      <button class="btn btn-default dropdown-toggle " type="button" name="" data-toggle="dropdown" >
+                      <button class="btn btn-default dropdown-toggle " type="button" data-toggle="dropdown" >
                         <span class="add-text">请选择一级分类</span>
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" >
                         <!-- 动态渲染 -->
                       </ul>
+                      <input type="hidden" name="categoryId">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" name="brandName"  placeholder="请输入二级分类">
@@ -129,6 +130,8 @@
                     </div>
                     <div class="form-group">
                       <img src="./images/none.png" alt="" height="100">
+                      <input type="hidden" name="brandLogo">
+                      <input type="hidden" name="hot" value="1"> 
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -153,7 +156,7 @@
   </script>
   <script type="text/html" id="addTpl">
     {{ each rows v i }}
-       <li><a href="#">{{ v.categoryName }}</a></li>
+       <li><a href="#" data-id="{{ v.id }}">{{ v.categoryName }}</a></li>
     {{ /each }}
   </script>
   <script src="./lib/jquery/jquery.min.js"></script>

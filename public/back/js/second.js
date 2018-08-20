@@ -61,15 +61,44 @@ $(function(){
     // console.log(11);
     // console.log($(this).html());
     $('#addSecond .add-text').html($(this).html());
+    var id = $(this).data('id');
+    $('[name="categoryId"]').val(id);
+    $('#addSecond').data('bootstrapValidator').updateStatus('categoryId', 'VALID');
 
   })
 
-
+//表单校验
   $('#addSecond').bootstrapValidator({
+    excluded: [],
+    feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    },
     fields: {
-
+      categoryId: {
+        validators: {
+          notEmpty: {
+            message: '请选择一级分类'
+          }
+        }
+      },
+      brandName: {
+        validators: {
+          notEmpty: {
+            message: '请输入二级分类名称'
+          }
+        }
+      },
+      brandLogo: {
+        validators: {
+          notEmpty: {
+            message: '请上传图片'
+          }
+        }
+      },
     }
-  })
+  });
 
   $("#fileupload").fileupload({
     dataType:"json",
@@ -79,7 +108,31 @@ $(function(){
       console.log(data);
       var imgUrl = data.result.picAddr;
       $('#addSecond img').attr('src', imgUrl);
+      $('[name="brandLogo"]').val(imgUrl);
+      $('#addSecond').data('bootstrapValidator').updateStatus('brandLogo', 'VALID');
     }
 });
+//阻止浏览器默认提交行为,ajax提交
+$('#addSecond').on('success.form.bv', function(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'post',
+    url: '/category/addSecondCategory',
+    data: $('#addSecond').serialize(),
+    dataType: 'json',
+    success: function( info ) {
+      // console.log(info);
+      if(info.success){
+        $('.addModal').modal('hide');
+        currentPage = 1;
+        render();
+        //重置表单
+        $('#addSecond').data('bootstrapValidator').resetForm(true);
+        $('#addSecond img').attr('src', "./images/none.png");
+        $('#addSecond .add-text').html('请选择一级分类');
+      }
+    }
+  })
+})
 
 })
